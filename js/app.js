@@ -36,10 +36,10 @@ function showMedicalPage() {
    ========================= */
 
 const authorizedMedics = [
-    { user: "mustafa", pin: "123", name: "مصطفى ابراهيم" },
-    { user: "doctor1", pin: "doc@911", name: "طبيب الطوارئ" },
-    { user: "nurse1", pin: "4567", name: "ممرض الطوارئ" },
-    { user: "admin", pin: "9999", name: "مدير النظام" }
+    { user: "mustafa", pin: "123", name: "مصطفى إبراهيم", link: "https://ai.studio/apps/drive/19AaqNsJVaIhpWDhnOivbNWNEUHixR0Vu" },
+    { user: "doctor1", pin: "doc@911", name: "طبيب الطوارئ", link: "https://ai.studio/apps/drive/19AaqNsJVaIhpWDhnOivbNWNEUHixR0Vu" },
+    { user: "nurse1", pin: "4567", name: "ممرض الطوارئ", link: "https://ai.studio/apps/drive/19AaqNsJVaIhpWDhnOivbNWNEUHixR0Vu" },
+    { user: "admin", pin: "9999", name: "مدير النظام", link: "https://ai.studio/apps/drive/19AaqNsJVaIhpWDhnOivbNWNEUHixR0Vu" }
 ];
 
 let isAuthenticated = false; 
@@ -62,13 +62,14 @@ function login() {
     const found = authorizedMedics.find(u => u.user === user && u.pin === pass);
 
     if (found) {
-        isAuthenticated = true;
         closeLogin();
-        window.location.href = "https://ai.studio/apps/drive/19AaqNsJVaIhpWDhnOivbNWNEUHixR0Vu";
+        // تحويل مباشر للسجل الطبي الكامل
+        window.location.href = found.link;
     } else {
         alert("بيانات الدخول غير صحيحة");
     }
 }
+
 async function scanNFC() {
 
     if (!("NDEFReader" in window)) {
@@ -80,16 +81,11 @@ async function scanNFC() {
         const ndef = new NDEFReader();
         await ndef.scan();
 
-        alert("قم بتمرير البطاقة...");
-
         ndef.onreading = (event) => {
-
             const decoder = new TextDecoder();
 
             for (const record of event.message.records) {
-
                 if (record.recordType === "text") {
-
                     const textData = decoder.decode(record.data);
 
                     try {
@@ -100,15 +96,15 @@ async function scanNFC() {
                         );
 
                         if (found) {
-                            isAuthenticated = true;
+                            ndef.onreading = null; // إيقاف المسح
                             closeLogin();
-                            showMedicalPage();
+                            window.location.replace(found.link); // تحويل مباشر للسجل الطبي
                         } else {
                             alert("بطاقة غير مخولة.");
                         }
 
                     } catch (e) {
-                        alert("بيانات البطاقة غير صحيحة.");
+                        alert("تنسيق بيانات البطاقة غير صحيح.");
                     }
                 }
             }
@@ -186,5 +182,4 @@ function callNumber(num) {
     } else {
         alert("عذراً، رقم الهاتف غير متوفر.");
     }
-
 }
