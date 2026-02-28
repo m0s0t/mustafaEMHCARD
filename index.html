@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نظام الطوارئ العراقي الوطني الرقمي</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<div class="container"> <div class="header">
+        <button class="btn-family" onclick="openFamily()">عائلته</button>
+        <button class="btn-call" onclick="callNumber('tel:+9647866305696')">اتصل</button>
+        <button class="btn-mfa" onclick="openLogin()">M.F.A</button>
+        <button class="btn-mfa" onclick="showMedicalPage()">تفاصيل طبية</button>
+    </div>
+
+    <div class="patient-profile">
+        <img src="assets/patient-photo.jpg" alt="صورة المريض" id="patientImg">
+    </div>
+
+    <div id="timerContainer" style="display:none; text-align:center; background:#fff3cd; padding:15px; border-radius:12px; margin:10px 0;">
+        <p style="margin:0; color:#856404;">سيتم إرسال موقعك للطوارئ خلال...</p>
+        <h3 id="countdownDisplay" style="font-size:30px; margin:10px 0; color:#d32f2f;">5</h3>
+        <button onclick="cancelEmergency()" style="background:#6c757d; color:white; border:none; padding:8px 15px; border-radius:5px; cursor:pointer;">إلغاء الإرسال</button>
+    </div>
+
+    <div id="dashboard">
+        <div class="card vital">
+            <h2>مصطفى إبراهيم حسن</h2>
+            <div class="label">فصيلة الدم</div> <div class="blood">O+</div>
+            <div class="label">حساسية قاتلة</div> <div class="allergy">البنسلين</div>
+            <div class="label">ملاحظات طبية حرجة</div> <div>مريض ربو – يُمنع إعطاء NSAIDs</div>
+            <div class="label">الوزن</div> <div class="wight">82 كغم</div>
+            <div class="label">الطول</div> <div class="high">180 سم</div>
+            <div class="label">عنوان السكن (الدائم)</div>
+            <div class="location-link">
+                <a href="http://googleusercontent.com/maps.google.com/8" target="_blank">📍 بغداد – الرصافة</a>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div><div class="label">الطوارئ</div><strong>911</strong></div>
+            <div><div class="label">العائلة</div><strong>07866305696</strong></div>
+        </div>
+
+        <button class="emergency-btn" onclick="callNumber('tel:911')">اتصل بالطوارئ 911</button>
+        <button onclick="sendAutoLocation()" class="btn-call">📍 إعادة إرسال الموقع الجغرافي</button>
+    </div>
+
+    <div id="familyPage" style="display:none">
+        <div class="family-header">
+            <button class="back-btn" onclick="goBack()">← رجوع</button>
+            <h3>بطاقات العائلة</h3>
+        </div>
+        <div class="family-grid">
+            <div class="family-card">
+                <div class="family-role">الأب</div>
+                <div class="family-name">إبراهيم حسن</div>
+                <div class="family-info">فصيلة الدم: A+</div>
+                <a class="family-call" href="tel:07709697123">📞 اتصال</a>
+            </div>
+            <div class="family-card">
+                <div class="family-role">الأم</div>
+                <div class="family-name">أم مصطفى</div>
+                <div class="family-info">فصيلة الدم: B+</div>
+                <a class="family-call" href="tel:+9647722222222">📞 اتصال</a>
+            </div>
+            <div class="family-card">
+                <div class="family-role">الأخ</div>
+                <div class="family-name">علي حسن</div>
+                <div class="family-info">فصيلة الدم: O+</div>
+                <a class="family-call" href="tel:+9647733333333">📞 اتصال</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="medicalDetailsPage" style="display:none; padding: 15px;">
+        <button class="back-btn-modern" onclick="goBack()">← العودة للسجل الرئيسي</button>
+        <div class="card">
+            <h3>التفاصيل الطبية المتقدمة</h3>
+            <div class="medical-section">
+                <h4 style="color: #2e7d32;">✅ الأمراض المزمنة</h4>
+                <table class="medical-table">
+                    <tr class="status-green"><th>اسم المرض</th><td>سليم</td></tr>
+                </table>
+            </div>
+            <div class="medical-section">
+                <h4 style="color: #2e7d32;">✅ العمليات الجراحية</h4>
+                <table class="medical-table">
+                    <tr class="status-green"><th>اسم العملية</th><td>سليم</td></tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div> 
+<div class="modal" id="loginModal" style="display:none">
+    <div class="modal-content">
+        <button class="back-btn" onclick="closeLogin()">← رجوع</button>
+        <h3>تسجيل دخول طبي</h3>
+        <input type="text" id="username" placeholder="اسم المستخدم">
+        <input type="password" id="password" placeholder="كلمة المرور">
+        <div class="modal-actions">
+            <button type="button" onclick="login()" class="btn-primary">دخول</button>
+            <hr>
+            <button onclick="scanNFC()" class="btn-nfc">دخول عبر NFC</button>
+        </div>
+    </div>
+</div>
+
+<div id="mfaModal" class="modal" style="display:none">
+    <div class="modal-content">
+        <h3>تأكيد هوية المسعف</h3>
+        <p id="medicLabel"></p>
+        <input type="password" id="mfaPin" placeholder="أدخل رمز التحقق (PIN)" inputmode="numeric" />
+        <button onclick="verifyMFA()" class="btn-primary">تأكيد</button>
+        <button onclick="closeMFA()" class="btn-secondary">إلغاء</button>
+    </div>
+</div>
+
+<script src="js/app.js"></script>
+<script src="js/sw-register.js"></script>
+</body>
+</html>

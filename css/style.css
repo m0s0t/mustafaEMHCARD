@@ -1,0 +1,279 @@
+* {
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, sans-serif;
+}
+
+body {
+  margin: 0;
+  background: #f4f7fb;
+  color: #111;
+}
+
+.container {
+  max-width: 480px;
+  margin: auto;
+  padding: 12px;
+}
+
+.header {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.header button {
+  flex: 1;
+  min-height: 56px;
+  border-radius: 14px;
+  border: none;
+  font-weight: bold;
+}
+
+.btn-family { background:#0056b3; color:white; }
+.btn-call   { background:#0d47a1; color:white; }
+.btn-mfa    { background:#e0e0e0; }
+
+.card {
+  background: rgba(255,255,255,0.8);
+  backdrop-filter: blur(12px);
+  border-radius: 18px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+.blood { font-size:28px; color:#0056b3; font-weight:bold; }
+.allergy { color:#d32f2f; font-weight:bold; }
+.label { font-size:13px; color:#555; }
+
+.footer {
+  display:flex;
+  gap:8px;
+  margin-bottom:12px;
+}
+
+.footer div {
+  flex:1;
+  background:white;
+  border-radius:14px;
+  padding:12px;
+  text-align:center;
+}
+
+.emergency-btn {
+  width:100%;
+  min-height:60px;
+  background:#d32f2f;
+  color:white;
+  border:none;
+  border-radius:16px;
+  font-size:18px;
+  font-weight:bold;
+}
+
+/* ===== Family ===== */
+.family-header {
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-bottom:16px;
+}
+
+.back-btn {
+  min-width:56px;
+  min-height:48px;
+  border-radius:12px;
+  border:none;
+}
+
+.family-grid {
+  display:grid;
+  grid-template-columns:1fr;
+  gap:12px;
+}
+
+.family-card {
+  background:white;
+  border-radius:16px;
+  padding:14px;
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+}
+
+.family-role { font-size:13px; color:#555; }
+.family-name { font-size:16px; font-weight:bold; }
+
+.family-call {
+  margin-top:8px;
+  padding:10px;
+  background:#0056b3;
+  color:white;
+  text-align:center;
+  border-radius:12px;
+  text-decoration:none;
+}
+
+/* ===== Modal ===== */
+.modal {
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.4);
+  align-items:center;
+  justify-content:center;
+}
+
+.modal-content {
+  background:white;
+  padding:20px;
+  border-radius:16px;
+  width:90%;
+  max-width:320px;
+}
+/* تحسين شكل وحجم الصورة الشخصية */
+.patient-profile {
+    text-align: center;
+    margin: 30px 0 20px 0; /* زيادة المسافات حول الصورة */
+}
+
+#patientImg {
+    width: 180px; /* تم تكبير الحجم من 120 إلى 180 */
+    height: 180px;
+    border-radius: 50%;
+    border: 5px solid var(--blue); /* إطار بلون الهوية البصرية */
+    object-fit: cover;
+    box-shadow: 0px 8px 20px rgba(0,0,0,0.15); /* ظل أعمق لتعطيه بروزاً */
+    transition: transform 0.3s ease;
+}
+
+#patientImg:hover {
+    transform: scale(1.05); /* تكبير بسيط عند التمرير */
+}
+.medical-section {
+    margin-bottom: 20px;
+    text-align: right;
+}
+
+.medical-section h4 {
+    color: var(--blue);
+    border-bottom: 2px solid var(--blue);
+    padding-bottom: 5px;
+}
+
+.medical-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.medical-table th, .medical-table td {
+    border: 1px solid #eee;
+    padding: 12px;
+    font-size: 14px;
+}
+
+.medical-table th {
+    background-color: #f8f9fa;
+    width: 40%;
+    color: #555;
+}
+/* تنسيق زر الرجوع الحديث */
+.back-btn-modern {
+    width: 100%;
+    padding: 12px;
+    background-color: #f8f9fa;
+    color: #333;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+/* جداول متناسقة مع أبعاد الهاتف */
+.medical-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 8px; /* مسافة بين الصفوف لسهولة القراءة */
+    margin-top: 10px;
+}
+
+.medical-table th, .medical-table td {
+    padding: 12px;
+    text-align: right;
+    font-size: 14px;
+}
+
+.medical-table th {
+    background: rgba(0,0,0,0.03);
+    border-radius: 8px 0 0 8px;
+    width: 40%;
+}
+
+.medical-table td {
+    border-radius: 0 8px 8px 0;
+}
+
+/* ألوان الحالات الصحية */
+.status-red td {
+    background-color: #ffebee; /* أحمر فاتح جداً للخلفية */
+    color: #c62828; /* أحمر داكن للنص */
+    font-weight: bold;
+    border-right: 5px solid #d32f2f; /* خط جانبي للتأكيد */
+}
+
+.status-green td {
+    background-color: #e8f5e9; /* أخضر فاتح للخلفية */
+    color: #2e7d32; /* أخضر داكن للنص */
+    border-right: 5px solid #2ecc71;
+}
+.location-link {
+    margin-top: 5px;
+}
+
+.location-link a {
+    display: inline-block;
+    color: #0056b3; /* نفس لون الهوية البصرية للمشروع */
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 18px;
+    padding: 8px 12px;
+    background: rgba(0, 86, 179, 0.05);
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.location-link a:hover {
+    background: rgba(0, 86, 179, 0.1);
+    transform: translateY(-2px);
+}
+.login-input {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+.separator {
+    margin: 15px 0;
+    color: #888;
+    position: relative;
+}
+
+.btn-nfc {
+    background-color: #4b0082;
+    color: white;
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+}
