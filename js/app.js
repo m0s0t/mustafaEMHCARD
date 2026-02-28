@@ -36,7 +36,7 @@ function showMedicalPage() {
    ========================= */
 
 const authorizedMedics = [
-    { user: "mustafa", pin: "123", name: "مصطفى إبراهيم" },
+    { user: "mustafa", pin: "123", name: "مصطفى ابراهيم" },
     { user: "doctor1", pin: "doc@911", name: "طبيب الطوارئ" },
     { user: "nurse1", pin: "4567", name: "ممرض الطوارئ" },
     { user: "admin", pin: "9999", name: "مدير النظام" }
@@ -47,7 +47,7 @@ let isAuthenticated = false;
 // وظيفة الزر الرئيسي: تفتح تسجيل الدخول إذا لم يتم التحقق
 function openLogin() {
     if (isAuthenticated) {
-        showMedicalPage();
+        window.location.href = "https://ai.studio/apps/drive/19AaqNsJVaIhpWDhnOivbNWNEUHixR0Vu";
     } else {
         const loginModal = document.getElementById("loginModal");
         if (loginModal) loginModal.style.display = "flex";
@@ -64,7 +64,7 @@ function login() {
     if (found) {
         isAuthenticated = true;
         closeLogin();
-        showMedicalPage();
+        window.location.href = "https://ai.studio/apps/drive/19AaqNsJVaIhpWDhnOivbNWNEUHixR0Vu";
     } else {
         alert("بيانات الدخول غير صحيحة");
     }
@@ -186,4 +186,5 @@ function callNumber(num) {
     } else {
         alert("عذراً، رقم الهاتف غير متوفر.");
     }
+
 }
